@@ -5,411 +5,447 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>課程內容專業驗收表 - PM 填寫</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: "Microsoft JhengHei", "微軟正黑體", Arial, sans-serif; background: #f5f5f5; padding: 20px; line-height: 1.6; }
-  .container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-  h1 { text-align: center; font-size: 24px; margin-bottom: 10px; color: #333; }
-  .subtitle { text-align: center; font-size: 16px; color: #666; margin-bottom: 30px; font-weight: normal; }
-  .section { margin-bottom: 30px; }
-  .section-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px; }
-  .form-group { margin-bottom: 15px; display: flex; align-items: flex-start; }
-  label { font-weight: bold; margin-right: 10px; color: #555; min-width: 100px; padding-top: 8px; }
-  input[type="text"], input[type="url"], input[type="date"] { flex: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; font-family: inherit; }
-  textarea.form-textarea {
-    flex: 1;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    font-family: inherit;
-    resize: vertical;
-    min-height: 38px;
-    line-height: 1.5;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft JhengHei", "微軟正黑體", Arial, sans-serif; background: #f5f5f5; padding: 20px; line-height: 1.6; }
+.container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+h1 { text-align: center; font-size: 24px; margin-bottom: 10px; color: #333; }
+.subtitle { text-align: center; font-size: 16px; color: #666; margin-bottom: 30px; font-weight: normal; }
+.section { margin-bottom: 30px; }
+.section-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px; }
+.form-group { margin-bottom: 15px; display: flex; align-items: flex-start; }
+label { font-weight: bold; margin-right: 10px; color: #555; min-width: 100px; padding-top: 8px; }
+input[type="text"], input[type="url"], input[type="date"] { flex: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; font-family: inherit; }
+textarea.form-textarea {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 38px;
+  line-height: 1.5;
+}
+textarea.form-textarea:focus {
+  outline: 1px solid #4CAF50;
+  border-color: #4CAF50;
+}
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+.info-item { display: flex; align-items: flex-start; }
+.info-item label { min-width: 90px; margin-bottom: 0; padding-top: 8px; }
+.info-item textarea.form-textarea { min-height: 38px; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+table th, table td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top;}
+table th { background: #f8f8f8; font-weight: bold; color: #333; }
+table input[type="text"], table input[type="date"] { width: 100%; border: 1px solid transparent; padding: 5px; background: transparent; }
+table input[type="text"]:focus, table input[type="date"]:focus { outline: 1px solid #4CAF50; border-radius: 3px; background: white;}
+
+/* 表格內的 textarea 樣式 */
+table textarea.table-textarea {
+  width: 100%;
+  border: 1px solid transparent;
+  padding: 5px;
+  background: transparent;
+  font-size: 14px;
+  font-family: inherit;
+  resize: none;
+  overflow: hidden;
+  min-height: 30px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+table textarea.table-textarea:focus {
+  outline: 1px solid #4CAF50;
+  border-radius: 3px;
+  background: white;
+}
+
+.checkbox-group { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
+.checkbox-item { display: flex; align-items: center; gap: 5px; }
+.checkbox-item input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
+.checkbox-item label { font-weight: normal; cursor: pointer; min-width: auto;}
+
+.action-buttons { display: flex; gap: 8px; align-items: center; }
+.btn-icon { 
+  width: 36px; 
+  height: 36px; 
+  padding: 0; 
+  font-size: 20px; 
+  font-weight: bold;
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.btn-add { background: #4CAF50; }
+.btn-add:hover { background: #45a049; transform: scale(1.05); }
+.btn-remove { background: #f44336; }
+.btn-remove:hover { background: #da190b; transform: scale(1.05); }
+
+.table-actions { margin-top: 10px; display: flex; gap: 10px; align-items: center; }
+.table-actions-label { font-size: 14px; color: #666; font-weight: normal; }
+
+.btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+button { padding: 12px 30px; font-size: 16px; border: none; border-radius: 4px; cursor: pointer; font-family: inherit; transition: background 0.3s; color: white;}
+.btn-export-json { background: #9C27B0; } .btn-export-json:hover { background: #7B1FA2; }
+.btn-import-json { background: #FF9800; } .btn-import-json:hover { background: #F57C00; }
+.btn-print { background: #2196F3; } .btn-print:hover { background: #0b7dda; }
+.btn-clear { background: #607D8B; } .btn-clear:hover { background: #455A64; }
+
+.alert { padding: 15px; margin: 20px 0; border-radius: 4px; font-size: 14px; }
+.alert-info { background: #E3F2FD; color: #1976D2; border-left: 4px solid #2196F3; }
+.alert-success { background: #E8F5E9; color: #388E3C; border-left: 4px solid #4CAF50; }
+
+input[type="file"] { display: none; }
+
+@media print { 
+  body { background: white; padding: 0; } 
+  .container { box-shadow: none; padding: 20px; } 
+  .btn-group, .alert, .table-actions { display: none !important; } 
+  input { border: none !important; background: transparent !important; }
+  input:focus { outline: none !important; }
+  textarea { 
+    border: none !important;
+    background: transparent !important;
+    resize: none !important;
+    overflow: hidden !important;
+    padding: 0 !important;
   }
-  textarea.form-textarea:focus {
-    outline: 1px solid #4CAF50;
-    border-color: #4CAF50;
-  }
-  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
-  .info-item { display: flex; align-items: flex-start; }
-  .info-item label { min-width: 90px; margin-bottom: 0; padding-top: 8px; }
-  .info-item textarea.form-textarea { min-height: 38px; }
-  table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-  table th, table td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: middle;}
-  table th { background: #f8f8f8; font-weight: bold; color: #333; }
-  table input[type="text"], table input[type="date"] { width: 100%; border: 1px solid transparent; padding: 5px; background: transparent; }
-  table input[type="text"]:focus, table input[type="date"]:focus { outline: 1px solid #4CAF50; border-radius: 3px; background: white;}
-  
-  .checkbox-group { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
-  .checkbox-item { display: flex; align-items: center; gap: 5px; }
-  .checkbox-item input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
-  .checkbox-item label { font-weight: normal; cursor: pointer; min-width: auto;}
-  
-  .action-buttons { display: flex; gap: 8px; align-items: center; }
-  .btn-icon { 
-    width: 36px; 
-    height: 36px; 
-    padding: 0; 
-    font-size: 20px; 
-    font-weight: bold;
-    border: none; 
-    border-radius: 4px; 
-    cursor: pointer; 
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-  }
-  .btn-add { background: #4CAF50; }
-  .btn-add:hover { background: #45a049; transform: scale(1.05); }
-  .btn-remove { background: #f44336; }
-  .btn-remove:hover { background: #da190b; transform: scale(1.05); }
-  
-  .table-actions { margin-top: 10px; display: flex; gap: 10px; align-items: center; }
-  .table-actions-label { font-size: 14px; color: #666; font-weight: normal; }
-  
-  .btn-group { display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
-  button { padding: 12px 30px; font-size: 16px; border: none; border-radius: 4px; cursor: pointer; font-family: inherit; transition: background 0.3s; color: white;}
-  .btn-export-json { background: #9C27B0; } .btn-export-json:hover { background: #7B1FA2; }
-  .btn-import-json { background: #FF9800; } .btn-import-json:hover { background: #F57C00; }
-  .btn-print { background: #2196F3; } .btn-print:hover { background: #0b7dda; }
-  .btn-clear { background: #607D8B; } .btn-clear:hover { background: #455A64; }
-  
-  .alert { padding: 15px; margin: 20px 0; border-radius: 4px; font-size: 14px; }
-  .alert-info { background: #E3F2FD; color: #1976D2; border-left: 4px solid #2196F3; }
-  .alert-success { background: #E8F5E9; color: #388E3C; border-left: 4px solid #4CAF50; }
-  
-  input[type="file"] { display: none; }
-  
-  @media print { 
-    body { background: white; padding: 0; } 
-    .container { box-shadow: none; padding: 20px; } 
-    .btn-group, .alert, .table-actions { display: none !important; } 
-    input { border: none !important; background: transparent !important; }
-    input:focus { outline: none !important; }
-    textarea { 
-      border: none !important;
-      background: transparent !important;
-      resize: none !important;
-      overflow: hidden !important;
-      padding: 0 !important;
-    }
-    textarea::placeholder { color: transparent !important; }
-    textarea:focus { outline: none !important; }
-    table td { padding: 8px; }
-  }
+  textarea::placeholder { color: transparent !important; }
+  textarea:focus { outline: none !important; }
+  table td { padding: 8px; }
+}
 </style>
 </head>
 <body>
 <div class="container" id="exportContent">
-  <h1>課程內容專業驗收表（講師內容）</h1>
-  <p class="subtitle">PM 填寫表單</p>
-  
-  <div class="alert alert-info">
-    <strong>📝 使用說明：</strong> 請填寫完成後，點擊「匯出 JSON 資料」按鈕，將檔案交給 FA 審核人員繼續處理。
+<h1>課程內容專業驗收表（講師內容）</h1>
+<p class="subtitle">PM 填寫表單</p>
+
+<div class="alert alert-info">
+  <strong>📝 使用說明：</strong> 請填寫完成後，點擊「匯出 JSON 資料」按鈕，將檔案交給 FA 審核人員繼續處理。
+</div>
+
+<form id="pmForm">
+  <div class="section">
+    <div class="section-title">一、課程課綱/腳本＆後台連結</div>
+    <div class="form-group">
+      <label>雲端連結：</label>
+      <textarea class="form-textarea" name="cloudLink" placeholder="請輸入雲端連結" oninput="autoResize(this)"></textarea>
+    </div>
+    <div class="form-group">
+      <label>後台連結：</label>
+      <textarea class="form-textarea" name="backendLink" placeholder="請輸入後台連結" oninput="autoResize(this)"></textarea>
+    </div>
   </div>
   
-  <form id="pmForm">
-    <div class="section">
-      <div class="section-title">一、課程課綱/腳本＆後台連結</div>
-      <div class="form-group">
-        <label>雲端連結：</label>
-        <textarea class="form-textarea" name="cloudLink" placeholder="請輸入雲端連結" oninput="autoResize(this)"></textarea>
+  <div class="section">
+    <div class="section-title">二、製作項目</div>
+    <div class="info-grid">
+      <div class="info-item"><label>課程組合：</label><textarea class="form-textarea" name="courseCombination" oninput="autoResize(this)"></textarea></div>
+      <div class="info-item"><label>負責PM：</label><textarea class="form-textarea" name="pmName" oninput="autoResize(this)"></textarea></div>
+      <div class="info-item"><label>章節名稱：</label><textarea class="form-textarea" name="chapterName" oninput="autoResize(this)"></textarea></div>
+      <div class="info-item"><label>合作講師：</label><textarea class="form-textarea" name="instructorName" oninput="autoResize(this)"></textarea></div>
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%;">項次</th>
+          <th style="width: 40%;">單元名稱</th>
+          <th style="width: 20%;">分鐘數</th>
+          <th style="width: 30%;">驗收日期</th>
+        </tr>
+      </thead>
+      <tbody id="unitTableBody">
+        <tr>
+          <td><input type="text" name="unitNo[]" value="1" readonly style="background: #f5f5f5;"></td>
+          <td><textarea class="table-textarea" name="unitName[]" placeholder="單元名稱" oninput="autoResizeTableTextarea(this)"></textarea></td>
+          <td><input type="text" name="duration[]" placeholder="0:00:00"></td>
+          <td><input type="text" name="reviewDate[]" placeholder="2/11"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="table-actions">
+      <span class="table-actions-label">單元操作：</span>
+      <div class="action-buttons">
+        <button type="button" class="btn-icon btn-add" onclick="addRow()" title="新增單元">+</button>
+        <button type="button" class="btn-icon btn-remove" onclick="deleteLastRow()" title="刪除最後一個單元">−</button>
       </div>
-      <div class="form-group">
-        <label>後台連結：</label>
-        <textarea class="form-textarea" name="backendLink" placeholder="請輸入後台連結" oninput="autoResize(this)"></textarea>
+    </div>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">三、附件清單（請勾選收到之內容）</div>
+    <div class="checkbox-group">
+      <div class="checkbox-item"><input type="checkbox" id="attach1" name="attachments"><label for="attach1">講稿／逐字稿</label></div>
+      <div class="checkbox-item"><input type="checkbox" id="attach2" name="attachments"><label for="attach2">課程教材／補充資料</label></div>
+      <div class="checkbox-item"><input type="checkbox" id="attach3" name="attachments"><label for="attach3">簡報檔（PPT／PDF）</label></div>
+      <div class="checkbox-item"><input type="checkbox" id="attach4" name="attachments"><label for="attach4">作業</label></div>
+      <div class="checkbox-item">
+        <input type="checkbox" id="attach5" name="attachments"><label for="attach5">其他：</label>
+        <textarea class="form-textarea" name="attachmentOther" style="width: 250px; margin-left: 5px; min-height: 38px;" oninput="autoResize(this)"></textarea>
       </div>
     </div>
     
-    <div class="section">
-      <div class="section-title">二、製作項目</div>
-      <div class="info-grid">
-        <div class="info-item"><label>課程組合：</label><textarea class="form-textarea" name="courseCombination" oninput="autoResize(this)"></textarea></div>
-        <div class="info-item"><label>負責PM：</label><textarea class="form-textarea" name="pmName" oninput="autoResize(this)"></textarea></div>
-        <div class="info-item"><label>章節名稱：</label><textarea class="form-textarea" name="chapterName" oninput="autoResize(this)"></textarea></div>
-        <div class="info-item"><label>合作講師：</label><textarea class="form-textarea" name="instructorName" oninput="autoResize(this)"></textarea></div>
-      </div>
-      
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 10%;">項次</th>
-            <th style="width: 40%;">單元名稱</th>
-            <th style="width: 20%;">分鐘數</th>
-            <th style="width: 30%;">驗收日期</th>
-          </tr>
-        </thead>
-        <tbody id="unitTableBody">
-          <tr>
-            <td><input type="text" name="unitNo[]" value="1" readonly style="background: #f5f5f5;"></td>
-            <td><input type="text" name="unitName[]" placeholder="單元名稱"></td>
-            <td><input type="text" name="duration[]" placeholder="0:00:00"></td>
-            <td><input type="text" name="reviewDate[]" placeholder="2/11"></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="table-actions">
-        <span class="table-actions-label">單元操作：</span>
-        <div class="action-buttons">
-          <button type="button" class="btn-icon btn-add" onclick="addRow()" title="新增單元">+</button>
-          <button type="button" class="btn-icon btn-remove" onclick="deleteLastRow()" title="刪除最後一個單元">−</button>
-        </div>
-      </div>
+    <div class="info-grid" style="margin-top: 20px;">
+      <div class="info-item"><label>上架人員：</label><textarea class="form-textarea" name="uploader" oninput="autoResize(this)"></textarea></div>
+      <div class="info-item"><label>上架日：</label><input type="date" name="uploadDate"></div>
     </div>
-    
-    <div class="section">
-      <div class="section-title">三、附件清單（請勾選收到之內容）</div>
-      <div class="checkbox-group">
-        <div class="checkbox-item"><input type="checkbox" id="attach1" name="attachments"><label for="attach1">講稿／逐字稿</label></div>
-        <div class="checkbox-item"><input type="checkbox" id="attach2" name="attachments"><label for="attach2">課程教材／補充資料</label></div>
-        <div class="checkbox-item"><input type="checkbox" id="attach3" name="attachments"><label for="attach3">簡報檔（PPT／PDF）</label></div>
-        <div class="checkbox-item"><input type="checkbox" id="attach4" name="attachments"><label for="attach4">作業</label></div>
-        <div class="checkbox-item">
-          <input type="checkbox" id="attach5" name="attachments"><label for="attach5">其他：</label>
-          <textarea class="form-textarea" name="attachmentOther" style="width: 250px; margin-left: 5px; min-height: 38px;" oninput="autoResize(this)"></textarea>
-        </div>
-      </div>
-      
-      <div class="info-grid" style="margin-top: 20px;">
-        <div class="info-item"><label>上架人員：</label><textarea class="form-textarea" name="uploader" oninput="autoResize(this)"></textarea></div>
-        <div class="info-item"><label>上架日：</label><input type="date" name="uploadDate"></div>
-      </div>
-    </div>
-    
-    <div class="btn-group">
-      <button type="button" class="btn-export-json" onclick="exportJSON()">📥 匯出 JSON 資料</button>
-      <button type="button" class="btn-import-json" onclick="document.getElementById('importFile').click()">📤 匯入 JSON 資料</button>
-      <button type="button" class="btn-print" onclick="window.print()">🖨️ 列印表單</button>
-      <button type="button" class="btn-clear" onclick="clearForm()">🗑️ 清空表單</button>
-    </div>
-    
-    <input type="file" id="importFile" accept=".json" onchange="importJSON(event)">
-  </form>
+  </div>
+  
+  <div class="btn-group">
+    <button type="button" class="btn-export-json" onclick="exportJSON()">📥 匯出 JSON 資料</button>
+    <button type="button" class="btn-import-json" onclick="document.getElementById('importFile').click()">📤 匯入 JSON 資料</button>
+    <button type="button" class="btn-print" onclick="window.print()">🖨️ 列印表單</button>
+    <button type="button" class="btn-clear" onclick="clearForm()">🗑️ 清空表單</button>
+  </div>
+  
+  <input type="file" id="importFile" accept=".json" onchange="importJSON(event)">
+</form>
 </div>
 
 <script>
-  // 自動調整 textarea 高度
-  function autoResize(textarea) {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
-  }
+// 自動調整 textarea 高度（一般用）
+function autoResize(textarea) {
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+}
 
-  // 頁面載入時初始化所有 textarea
-  window.addEventListener('load', function() {
-    document.querySelectorAll('textarea').forEach(function(textarea) {
-      autoResize(textarea);
-    });
+// 自動調整表格內 textarea 高度
+function autoResizeTableTextarea(textarea) {
+  textarea.style.height = 'auto';
+  textarea.style.height = Math.max(30, textarea.scrollHeight) + 'px';
+}
+
+// 頁面載入時初始化所有 textarea
+window.addEventListener('load', function() {
+  document.querySelectorAll('.form-textarea').forEach(function(textarea) {
+    autoResize(textarea);
   });
+  document.querySelectorAll('.table-textarea').forEach(function(textarea) {
+    autoResizeTableTextarea(textarea);
+  });
+});
 
-  // 在表格末尾新增單元
-  function addRow() {
-    const tbody = document.getElementById('unitTableBody');
-    const rowCount = tbody.rows.length + 1;
-    const newRow = tbody.insertRow();
-    newRow.innerHTML = `
-      <td><input type="text" name="unitNo[]" value="${rowCount}" readonly style="background: #f5f5f5;"></td>
-      <td><input type="text" name="unitName[]" placeholder="單元名稱"></td>
-      <td><input type="text" name="duration[]" placeholder="0:00:00"></td>
-      <td><input type="text" name="reviewDate[]" placeholder="2/11"></td>
-    `;
+// 在表格末尾新增單元
+function addRow() {
+  const tbody = document.getElementById('unitTableBody');
+  const rowCount = tbody.rows.length + 1;
+  const newRow = tbody.insertRow();
+  newRow.innerHTML = `
+    <td><input type="text" name="unitNo[]" value="${rowCount}" readonly style="background: #f5f5f5;"></td>
+    <td><textarea class="table-textarea" name="unitName[]" placeholder="單元名稱" oninput="autoResizeTableTextarea(this)"></textarea></td>
+    <td><input type="text" name="duration[]" placeholder="0:00:00"></td>
+    <td><input type="text" name="reviewDate[]" placeholder="2/11"></td>
+  `;
+  updateRowNumbers();
+}
+
+// 刪除最後一個單元
+function deleteLastRow() {
+  const tbody = document.getElementById('unitTableBody');
+  
+  if (tbody.rows.length <= 1) {
+    alert('至少需要保留一個單元！');
+    return;
+  }
+  
+  if (confirm('確定要刪除最後一個單元嗎？')) {
+    tbody.deleteRow(tbody.rows.length - 1);
     updateRowNumbers();
   }
+}
 
-  // 刪除最後一個單元
-  function deleteLastRow() {
-    const tbody = document.getElementById('unitTableBody');
-    
-    if (tbody.rows.length <= 1) {
-      alert('至少需要保留一個單元！');
-      return;
-    }
-    
-    if (confirm('確定要刪除最後一個單元嗎？')) {
-      tbody.deleteRow(tbody.rows.length - 1);
-      updateRowNumbers();
+// 更新項次編號
+function updateRowNumbers() {
+  const tbody = document.getElementById('unitTableBody');
+  const rows = tbody.getElementsByTagName('tr');
+  
+  for (let i = 0; i < rows.length; i++) {
+    const firstInput = rows[i].querySelector('input[name="unitNo[]"]');
+    if (firstInput) {
+      firstInput.value = i + 1;
     }
   }
+}
 
-  // 更新項次編號
-  function updateRowNumbers() {
-    const tbody = document.getElementById('unitTableBody');
-    const rows = tbody.getElementsByTagName('tr');
+// 收集表單資料
+function collectFormData() {
+  const data = {
+    version: '1.0',
+    formType: 'PM',
+    exportDate: new Date().toISOString(),
+    cloudLink: document.querySelector('[name="cloudLink"]').value,
+    backendLink: document.querySelector('[name="backendLink"]').value,
+    courseCombination: document.querySelector('[name="courseCombination"]').value,
+    pmName: document.querySelector('[name="pmName"]').value,
+    chapterName: document.querySelector('[name="chapterName"]').value,
+    instructorName: document.querySelector('[name="instructorName"]').value,
+    units: [],
+    attachments: {
+      lecture: document.getElementById('attach1').checked,
+      materials: document.getElementById('attach2').checked,
+      presentation: document.getElementById('attach3').checked,
+      homework: document.getElementById('attach4').checked,
+      other: document.getElementById('attach5').checked,
+      otherText: document.querySelector('[name="attachmentOther"]').value
+    },
+    uploader: document.querySelector('[name="uploader"]').value,
+    uploadDate: document.querySelector('[name="uploadDate"]').value
+  };
+
+  const tbody = document.getElementById('unitTableBody');
+  const rows = tbody.getElementsByTagName('tr');
+  
+  for (let i = 0; i < rows.length; i++) {
+    const unitNo = rows[i].querySelector('[name="unitNo[]"]').value;
+    const unitName = rows[i].querySelector('[name="unitName[]"]').value;
+    const duration = rows[i].querySelector('[name="duration[]"]').value;
+    const reviewDate = rows[i].querySelector('[name="reviewDate[]"]').value;
     
-    for (let i = 0; i < rows.length; i++) {
-      const firstInput = rows[i].getElementsByTagName('input')[0];
-      if (firstInput) {
-        firstInput.value = i + 1;
+    data.units.push({
+      no: unitNo,
+      name: unitName,
+      duration: duration,
+      reviewDate: reviewDate
+    });
+  }
+
+  return data;
+}
+
+// 匯出 JSON
+function exportJSON() {
+  const data = collectFormData();
+  const jsonStr = JSON.stringify(data, null, 2);
+  const blob = new Blob([jsonStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  
+  const filename = `PM_課程驗收表_${data.chapterName || '未命名'}_${new Date().toISOString().split('T')[0]}.json`;
+  
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  
+  showAlert('✅ JSON 資料已成功匯出！請將檔案交給 FA 審核人員。', 'success');
+}
+
+// 匯入 JSON
+function importJSON(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      
+      if (data.formType !== 'PM') {
+        alert('⚠️ 這不是 PM 表單的 JSON 檔案！');
+        return;
       }
-    }
-  }
 
-  // 收集表單資料
-  function collectFormData() {
-    const data = {
-      version: '1.0',
-      formType: 'PM',
-      exportDate: new Date().toISOString(),
-      cloudLink: document.querySelector('[name="cloudLink"]').value,
-      backendLink: document.querySelector('[name="backendLink"]').value,
-      courseCombination: document.querySelector('[name="courseCombination"]').value,
-      pmName: document.querySelector('[name="pmName"]').value,
-      chapterName: document.querySelector('[name="chapterName"]').value,
-      instructorName: document.querySelector('[name="instructorName"]').value,
-      units: [],
-      attachments: {
-        lecture: document.getElementById('attach1').checked,
-        materials: document.getElementById('attach2').checked,
-        presentation: document.getElementById('attach3').checked,
-        homework: document.getElementById('attach4').checked,
-        other: document.getElementById('attach5').checked,
-        otherText: document.querySelector('[name="attachmentOther"]').value
-      },
-      uploader: document.querySelector('[name="uploader"]').value,
-      uploadDate: document.querySelector('[name="uploadDate"]').value
-    };
+      // 填入基本資料
+      document.querySelector('[name="cloudLink"]').value = data.cloudLink || '';
+      document.querySelector('[name="backendLink"]').value = data.backendLink || '';
+      document.querySelector('[name="courseCombination"]').value = data.courseCombination || '';
+      document.querySelector('[name="pmName"]').value = data.pmName || '';
+      document.querySelector('[name="chapterName"]').value = data.chapterName || '';
+      document.querySelector('[name="instructorName"]').value = data.instructorName || '';
 
-    const tbody = document.getElementById('unitTableBody');
-    const rows = tbody.getElementsByTagName('tr');
-    
-    for (let i = 0; i < rows.length; i++) {
-      const inputs = rows[i].getElementsByTagName('input');
-      data.units.push({
-        no: inputs[0].value,
-        name: inputs[1].value,
-        duration: inputs[2].value,
-        reviewDate: inputs[3].value
-      });
-    }
-
-    return data;
-  }
-
-  // 匯出 JSON
-  function exportJSON() {
-    const data = collectFormData();
-    const jsonStr = JSON.stringify(data, null, 2);
-    const blob = new Blob([jsonStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    
-    const filename = `PM_課程驗收表_${data.chapterName || '未命名'}_${new Date().toISOString().split('T')[0]}.json`;
-    
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-    
-    showAlert('✅ JSON 資料已成功匯出！請將檔案交給 FA 審核人員。', 'success');
-  }
-
-  // 匯入 JSON
-  function importJSON(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      try {
-        const data = JSON.parse(e.target.result);
-        
-        if (data.formType !== 'PM') {
-          alert('⚠️ 這不是 PM 表單的 JSON 檔案！');
-          return;
-        }
-
-        // 填入基本資料
-        document.querySelector('[name="cloudLink"]').value = data.cloudLink || '';
-        document.querySelector('[name="backendLink"]').value = data.backendLink || '';
-        document.querySelector('[name="courseCombination"]').value = data.courseCombination || '';
-        document.querySelector('[name="pmName"]').value = data.pmName || '';
-        document.querySelector('[name="chapterName"]').value = data.chapterName || '';
-        document.querySelector('[name="instructorName"]').value = data.instructorName || '';
-
-        // 填入附件清單
-        if (data.attachments) {
-          document.getElementById('attach1').checked = data.attachments.lecture || false;
-          document.getElementById('attach2').checked = data.attachments.materials || false;
-          document.getElementById('attach3').checked = data.attachments.presentation || false;
-          document.getElementById('attach4').checked = data.attachments.homework || false;
-          document.getElementById('attach5').checked = data.attachments.other || false;
-          document.querySelector('[name="attachmentOther"]').value = data.attachments.otherText || '';
-        }
-
-        document.querySelector('[name="uploader"]').value = data.uploader || '';
-        document.querySelector('[name="uploadDate"]').value = data.uploadDate || '';
-
-        // 清空並重建單元表格
-        const tbody = document.getElementById('unitTableBody');
-        tbody.innerHTML = '';
-        
-        if (data.units && data.units.length > 0) {
-          data.units.forEach((unit, index) => {
-            const newRow = tbody.insertRow();
-            newRow.innerHTML = `
-              <td><input type="text" name="unitNo[]" value="${index + 1}" readonly style="background: #f5f5f5;"></td>
-              <td><input type="text" name="unitName[]" value="${unit.name || ''}"></td>
-              <td><input type="text" name="duration[]" value="${unit.duration || ''}"></td>
-              <td><input type="text" name="reviewDate[]" value="${unit.reviewDate || ''}"></td>
-            `;
-          });
-        } else {
-          addRow();
-        }
-
-        // 調整所有 textarea 高度
-        document.querySelectorAll('textarea').forEach(autoResize);
-
-        showAlert('✅ JSON 資料已成功匯入！', 'success');
-      } catch (error) {
-        alert('❌ JSON 檔案格式錯誤：' + error.message);
+      // 填入附件清單
+      if (data.attachments) {
+        document.getElementById('attach1').checked = data.attachments.lecture || false;
+        document.getElementById('attach2').checked = data.attachments.materials || false;
+        document.getElementById('attach3').checked = data.attachments.presentation || false;
+        document.getElementById('attach4').checked = data.attachments.homework || false;
+        document.getElementById('attach5').checked = data.attachments.other || false;
+        document.querySelector('[name="attachmentOther"]').value = data.attachments.otherText || '';
       }
-    };
-    reader.readAsText(file);
-    
-    // 清空 input，允許重複匯入同一檔案
-    event.target.value = '';
-  }
 
-  // 清空表單
-  function clearForm() {
-    if (!confirm('確定要清空所有資料嗎？此操作無法復原！')) {
-      return;
+      document.querySelector('[name="uploader"]').value = data.uploader || '';
+      document.querySelector('[name="uploadDate"]').value = data.uploadDate || '';
+
+      // 清空並重建單元表格
+      const tbody = document.getElementById('unitTableBody');
+      tbody.innerHTML = '';
+      
+      if (data.units && data.units.length > 0) {
+        data.units.forEach((unit, index) => {
+          const newRow = tbody.insertRow();
+          newRow.innerHTML = `
+            <td><input type="text" name="unitNo[]" value="${index + 1}" readonly style="background: #f5f5f5;"></td>
+            <td><textarea class="table-textarea" name="unitName[]" oninput="autoResizeTableTextarea(this)">${unit.name || ''}</textarea></td>
+            <td><input type="text" name="duration[]" value="${unit.duration || ''}"></td>
+            <td><input type="text" name="reviewDate[]" value="${unit.reviewDate || ''}"></td>
+          `;
+        });
+      } else {
+        addRow();
+      }
+
+      // 調整所有 textarea 高度
+      document.querySelectorAll('.form-textarea').forEach(autoResize);
+      document.querySelectorAll('.table-textarea').forEach(autoResizeTableTextarea);
+
+      showAlert('✅ JSON 資料已成功匯入！', 'success');
+    } catch (error) {
+      alert('❌ JSON 檔案格式錯誤：' + error.message);
     }
+  };
+  reader.readAsText(file);
+  
+  // 清空 input，允許重複匯入同一檔案
+  event.target.value = '';
+}
 
-    document.getElementById('pmForm').reset();
-    
-    const tbody = document.getElementById('unitTableBody');
-    tbody.innerHTML = '';
-    addRow();
-
-    showAlert('🗑️ 表單已清空', 'success');
+// 清空表單
+function clearForm() {
+  if (!confirm('確定要清空所有資料嗎？此操作無法復原！')) {
+    return;
   }
 
-  // 顯示提示訊息
-  function showAlert(message, type) {
-    const existingAlert = document.querySelector('.alert-success');
-    if (existingAlert) {
-      existingAlert.remove();
-    }
+  document.getElementById('pmForm').reset();
+  
+  const tbody = document.getElementById('unitTableBody');
+  tbody.innerHTML = '';
+  addRow();
 
-    const alert = document.createElement('div');
-    alert.className = `alert alert-${type}`;
-    alert.innerHTML = `<strong>${message}</strong>`;
-    
-    const container = document.querySelector('.container');
-    const firstSection = document.querySelector('.section');
-    container.insertBefore(alert, firstSection);
+  showAlert('🗑️ 表單已清空', 'success');
+}
 
-    setTimeout(() => {
-      alert.style.transition = 'opacity 0.5s';
-      alert.style.opacity = '0';
-      setTimeout(() => alert.remove(), 500);
-    }, 3000);
+// 顯示提示訊息
+function showAlert(message, type) {
+  const existingAlert = document.querySelector('.alert-success');
+  if (existingAlert) {
+    existingAlert.remove();
   }
+
+  const alert = document.createElement('div');
+  alert.className = `alert alert-${type}`;
+  alert.innerHTML = `<strong>${message}</strong>`;
+  
+  const container = document.querySelector('.container');
+  const firstSection = document.querySelector('.section');
+  container.insertBefore(alert, firstSection);
+
+  setTimeout(() => {
+    alert.style.transition = 'opacity 0.5s';
+    alert.style.opacity = '0';
+    setTimeout(() => alert.remove(), 500);
+  }, 3000);
+}
 </script>
 </body>
 </html>
